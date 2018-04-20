@@ -13,7 +13,7 @@ export default class Navbar extends Component {
         <Menu borderless>
             <Menu.Item
             position='left'>
-                <Image src="https://placeimg.com/75/75/any"
+                <Image src="http://placekitten.com/g/75/75"
                 alt='logo'
                 size='mini'
                 circular/>
