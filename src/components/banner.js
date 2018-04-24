@@ -7,25 +7,22 @@ class Banner extends Component {
         const settings = {
             dots: true,
             autoplay: true,
-            autoplaySpeed: 5000,
-            speed:1000,
+            autoplaySpeed: 10000,
+            speed:1500,
             pauseOnDotsHover: true,
-            pauseOnHover: true
+            pauseOnHover: true,
+            easing: 'ease-out'
         };
         //could just make an array of images and map over it
         // export carousel to it's own component and import into Banner
         return (
             <Container>
                 <Slider {...settings}>
-                    <div>
-                        <img className="mx-auto" src="http://placekitten.com/g/400/200" alt="first"/>
-                    </div>
-                    <div>
-                        <img className="mx-auto" src="http://placekitten.com/g/400/200" alt="second"/>
-                    </div>
-                    <div>
-                        <img className="mx-auto" src="http://placekitten.com/g/400/200" alt="third"/>
-                    </div>
+                    {this.props.images.map((path, i) => (
+                        <div>
+                            <img className="mx-auto" src={path} alt={i} key={i}/>
+                        </div>
+                    ))}
                 </Slider>
             </Container>
         )
