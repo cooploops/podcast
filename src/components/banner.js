@@ -19,8 +19,8 @@ class Banner extends Component {
             <Container>
                 <Slider {...settings}>
                     {this.props.images.map((path, i) => (
-                        <div>
-                            <img className="mx-auto" src={path} alt={i} key={i}/>
+                        <div key={i}>
+                            <img className="mx-auto" src={path} alt={'cat'} key={i}/>
                         </div>
                     ))}
                 </Slider>

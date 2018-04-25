@@ -15,7 +15,7 @@ const style = {
 const phantom = {
   display: 'block',
   padding: '20px',
-  height: '60px',
+  height: '70px',
   width: '100%',
 }
 
