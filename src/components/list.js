@@ -1,6 +1,7 @@
 import React from 'react';
 import {List} from 'semantic-ui-react';
 
+// TODO turn this into a map as it'll be likely props will be an array of results
  const PodcastList = props => {
     return (
     <div>
