@@ -12,33 +12,40 @@ export default class Navbar extends Component {
       return (
         <Menu borderless>
             <Menu.Item
-            position='left'>
+            position='left'
+            href="/">
                 <Image src="http://placekitten.com/g/75/75"
                 alt='logo'
                 size='mini'
                 circular/>
             </Menu.Item>
 
-          <Menu.Item
-            name='Home'
-            active={activeItem === 'Home'}
-            onClick={this.handleItemClick}>
-            Home
-          </Menu.Item>
-  
-          <Menu.Item
-            name='Podcasts'
-            active={activeItem === 'Podcasts'}
-            onClick={this.handleItemClick}>
-            Podcasts
-          </Menu.Item>
-  
-          <Menu.Item
-            name='About Us'
-            active={activeItem === 'About Us'}
-            onClick={this.handleItemClick}>
-            About Us
-          </Menu.Item>
+
+            <Menu.Item
+              href="/"
+              name='Home'
+              active={activeItem === 'Home'}
+              onClick={this.handleItemClick}>
+              Home
+            </Menu.Item>
+
+            <Menu.Item
+              href='/podcasts'
+              name='Podcasts'
+              active={activeItem === 'Podcasts'}
+              onClick={this.handleItemClick}>
+              Podcasts
+            </Menu.Item>
+
+
+            <Menu.Item
+              href='/about'
+              name='About Us'
+              active={activeItem === 'About Us'}
+              onClick={this.handleItemClick}>
+              About Us
+            </Menu.Item>
+
         </Menu>
       )
     }
