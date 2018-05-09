@@ -5,6 +5,7 @@ import Footer from './components/footer';
 import Home from './pages/Home/home';
 import AboutUs from './pages/AboutUs/aboutUs';
 import './App.css';
+const YT_API_key = 'AIzaSyA3GCVy6E2Gqgc0R1a1akzwrj3yYDZRS6I';
 
 class App extends Component {
   render() {
@@ -16,7 +17,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             {/* <Route exact path='/podcasts' component={Podcasts} /> */}
             <Route exact path='/about' component={AboutUs} />
-            {/* <Route path='*' component={Home} /> */}
+            <Route path='*' component={Home} />
           </Switch>
           <Footer />
         </div>
