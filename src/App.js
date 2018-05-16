@@ -5,7 +5,6 @@ import Footer from './components/footer';
 import Home from './pages/Home/home';
 import AboutUs from './pages/AboutUs/aboutUs';
 import './App.css';
-const YT_API_key;
 
 class App extends Component {
   render() {

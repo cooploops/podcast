@@ -2,10 +2,25 @@ import React, {Component} from 'react';
 import Banner from '../../components/banner';
 import SocialMedia from '../../components/social_media';
 import PodcastList from '../../components/list';
+import axios from "axios";
 
 import {Grid, Divider} from 'semantic-ui-react';
 
 class Home extends Component {
+    state = {
+        videos:[]
+    };
+
+    componentDidMount(){
+        axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/helloWorld")
+        .then(result => {
+            console.log(result);
+            this.setState({videos:result.data});
+            console.log(this.state);
+        })
+        .catch(error => console.log(error));
+    }
+
     render() {
         const imagePaths = ["http://placekitten.com/g/800/500","http://placekitten.com/g/800/500","http://placekitten.com/g/800/500"]
         return(
