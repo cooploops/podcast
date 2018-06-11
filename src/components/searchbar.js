@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 class SearchBar extends Component {
     //TODO work on making this part of application state
-    state ={
+    state = {
         term:'Search for Podcasts here'
     }
     
