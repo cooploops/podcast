@@ -12,7 +12,7 @@ class Home extends Component {
     };
 
     componentDidMount(){
-        axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/helloWorld")
+        axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/Ollie")
         .then(result => {
             console.log(result);
             this.setState({videos:result.data});
