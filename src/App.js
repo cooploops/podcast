@@ -4,6 +4,7 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Home from './pages/Home/home';
 import AboutUs from './pages/AboutUs/aboutUs';
+import Podcasts from './pages/Podcasts/podcasts';
 import './App.css';
 
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
-            {/* <Route exact path='/podcasts' component={Podcasts} /> */}
+            <Route exact path='/podcasts' component={Podcasts} />
             <Route exact path='/about' component={AboutUs} />
             <Route path='*' component={Home} />
           </Switch>

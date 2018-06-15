@@ -33,10 +33,10 @@ class Home extends Component {
                         </Grid.Column>
                         <Divider vertical />
                         <Grid.Column width={3}>
-                            <PodcastList listTitle={'Most Recent'}/>
+                            {/* <PodcastList listTitle={'Most Recent'}/> */}
                         </Grid.Column>
                         <Grid.Column width={3}>
-                            <PodcastList listTitle={'Most Popular'}/>
+                            {/* <PodcastList listTitle={'Most Popular'}/> */}
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

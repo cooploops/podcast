@@ -1,21 +1,58 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
 import SearchBar from '../../components/searchbar';
+import VideoDetail from '../../components/videoDetail';
+import axios from 'axios';
+import Fuse from 'fuse.js';
+import PodcastList from '../../components/list';
 
 class Podcasts extends Component{
 
     state = {
         storedVideos:[],
-        filteredVideos:[]
+        filteredVideos:[],
+        selectedPodcast: null
     }
-
-    podcastSearch(term){
-        // podcastSearch function will perform search of array of videos and will use lodash _.filter(datasource, {title: whatever user types in})
-        // Note _.filter returns a whole new array which will be stored in filteredVideos every time the user enters input
+    options = {
+        shouldSort:true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+            {
+                name: 'raw.snippet.title',
+                weight: 0.7
+            },
+            {
+                name: 'raw.snippet.description',
+                weight: 0.3
+            }
+        ]
     }
 
     componentDidMount(){
         // axios request to cloud function that performs YT api search of most recent uploads playlist and store in state of storedVideos and filteredVideos
+        axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/Ollie")
+        .then(result => {
+            console.log(result);
+            this.setState({
+                storedVideos:result.data,
+                filteredVideos: result.data
+            });
+            console.log(this.state);
+        })
+        .catch(error => console.log(error));
+    }
+
+    podcastSearch(term){
+        const fuse = new Fuse(this.state.storedVideos, this.options);
+        const results = fuse.search(term);
+        this.setState({
+            filteredVideos: results
+        })
+        console.log(this.state.filteredVideos);
     }
 
     render(){
@@ -23,7 +60,11 @@ class Podcasts extends Component{
 
         return(
             <div>
-            <SearchBar onSearchTermChange={search} />
+                <VideoDetail video={this.state.selectedPodcast}/>
+                <SearchBar onSearchTermChange={search} />
+                <PodcastList
+                onPodcastSelect = {selectedPodcast => this.setState({selectedPodcast})} 
+                podcasts={this.state.filteredVideos}/>
             </div>
         )
     }
