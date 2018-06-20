@@ -10,10 +10,10 @@ import {List, Image} from 'semantic-ui-react';
          const url = `https://www.youtube.com/watch?v=${podcast.raw.snippet.resourceId.videoId}`;
 
          return (
-            <List.Item>
+            <List.Item key={podcast.raw.id} onClick={() => props.onPodcastSelect(podcast)}>
                 <Image src={defaultImg} size='tiny'/>
                 <List.Content>
-                    <List.Header href={url}>
+                    <List.Header>
                         {podcast.raw.snippet.title}
                     </List.Header>
                     <List.Description>
@@ -26,7 +26,7 @@ import {List, Image} from 'semantic-ui-react';
 
     return (
     <div>
-        <List bulleted relaxed>
+        <List bulleted relaxed link>
             {podcastList}
         </List>
     </div>

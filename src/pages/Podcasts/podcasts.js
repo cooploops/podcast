@@ -47,12 +47,18 @@ class Podcasts extends Component{
     }
 
     podcastSearch(term){
+        if(!term){
+            this.setState({
+                filteredVideos:this.state.storedVideos
+            })
+        } else {
         const fuse = new Fuse(this.state.storedVideos, this.options);
         const results = fuse.search(term);
         this.setState({
             filteredVideos: results
         })
         console.log(this.state.filteredVideos);
+        }
     }
 
     render(){

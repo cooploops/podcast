@@ -5,7 +5,7 @@ if(!video){
     return <div>Loading...</div>;
 }
 
-const videoId = video.id.videoId;
+const videoId = video.raw.snippet.resourceId.videoId;
 const url = `https://www.youtube.com/embed/${videoId}`
     return(
         <div className="video-detail col-md-8">
@@ -13,8 +13,8 @@ const url = `https://www.youtube.com/embed/${videoId}`
                 <iframe className="embed-responsive-item" src={url}></iframe>
             </div>
             <div className="details">
-                <div>{video.snippet.title}</div>
-                <div>{video.snippet.description}</div>    
+                <div>{video.raw.snippet.title}</div>
+                <div>{video.raw.snippet.description}</div>    
             </div>
         </div>
     );
