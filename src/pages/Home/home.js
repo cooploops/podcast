@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import Banner from '../../components/banner';
 import SocialMedia from '../../components/social_media';
-import PodcastList from '../../components/list';
+import ShortList from '../../components/shortList';
 import axios from "axios";
 
-import {Grid, Divider} from 'semantic-ui-react';
+import {Grid, Header} from 'semantic-ui-react';
 
 class Home extends Component {
     state = {
@@ -14,9 +14,8 @@ class Home extends Component {
     componentDidMount(){
         axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/Ollie")
         .then(result => {
-            console.log(result);
             this.setState({videos:result.data});
-            console.log(this.state);
+            console.log(this.state.videos)
         })
         .catch(error => console.log(error));
     }
@@ -31,12 +30,17 @@ class Home extends Component {
                         <Grid.Column width={9}>
                             <SocialMedia />
                         </Grid.Column>
-                        <Divider vertical />
                         <Grid.Column width={3}>
-                            {/* <PodcastList listTitle={'Most Recent'}/> */}
+                            <Header as='h3' textAlign='center'>
+                                Most Recent
+                            </Header>
+                            <ShortList podcasts={this.state.videos}/>
                         </Grid.Column>
                         <Grid.Column width={3}>
-                            {/* <PodcastList listTitle={'Most Popular'}/> */}
+                        <Header as='h3' textAlign='center'>
+                                Most Popular
+                            </Header>
+                            <ShortList podcasts={this.state.videos}/>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

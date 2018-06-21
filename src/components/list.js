@@ -7,7 +7,6 @@ import {List, Image} from 'semantic-ui-react';
      const podcastList = props.podcasts.map((podcast) => {
 
          const defaultImg = podcast.raw.snippet.thumbnails.default.url;
-         const url = `https://www.youtube.com/watch?v=${podcast.raw.snippet.resourceId.videoId}`;
 
          return (
             <List.Item key={podcast.raw.id} onClick={() => props.onPodcastSelect(podcast)}>
