@@ -1,6 +1,6 @@
 import React from 'react';
-import ShortListItem from './shortListItem';
-import {List, Embed, Modal} from 'semantic-ui-react';
+
+import {List, Image} from 'semantic-ui-react';
 
 const ShortList = props => {
         if(!props.podcasts){
@@ -9,17 +9,16 @@ const ShortList = props => {
         const miniList = props.podcasts.map((podcast) => {
 
             // set it up so that when a list item is click that it opens up in a modal on the home page with the embedded youtube video ready to play
-
+            const defaultImg = podcast.raw.snippet.thumbnails.default.url;
             return (
-            <Modal key={podcast.raw.etag} trigger={<ShortListItem podcast={podcast}/>}>
-                <Modal.Header>Select a Photo</Modal.Header>
-                <Modal.Content>
-                    <Embed
-                    aspectRation='16:9' 
-                    id={podcast.raw.snippet.resourceId.videoId} 
-                    source='youtube'/>
-                </Modal.Content>
-            </Modal>
+            <List.Item key={podcast.raw.id} onClick={() => props.onVideoSelect(podcast)}>
+                <Image src={defaultImg} size='tiny' verticalAlign='middle'/>
+                <List.Content verticalAlign='middle'>
+                    <List.Header>
+                        {podcast.raw.snippet.title}
+                    </List.Header>
+                </List.Content>
+            </List.Item>
             );
         });
 
