@@ -14,15 +14,12 @@ class Home extends Component {
         selectedVideo: null
     };
 
-    handleOpenModal = () => this.setState({modalOpen: true});
-
     handleCloseModal = () => this.setState({modalOpen: false});
 
     componentDidMount() {
         axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/Ollie")
         .then(result => {
             this.setState({videos:result.data});
-            console.log(this.state.videos)
         })
         .catch(error => console.log(error));
     }
@@ -56,7 +53,10 @@ class Home extends Component {
                                 Most Popular
                             </Header>
                             <ShortList podcasts={this.state.videos}
-                            onVideoSelect={selectedVideo => this.setState({selectedVideo})}/>
+                            onVideoSelect={selectedVideo => {
+                                this.setState({selectedVideo, modalOpen:true});
+                                }
+                            }/>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

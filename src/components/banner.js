@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, Responsive, Image } from 'semantic-ui-react';
 import Slider from 'react-slick';
 
 class Banner extends Component {
@@ -13,18 +13,19 @@ class Banner extends Component {
             pauseOnHover: true,
             easing: 'ease-out'
         };
+
         //could just make an array of images and map over it
         // export carousel to it's own component and import into Banner
         return (
-            <Container>
+            <Responsive as={Container}>
                 <Slider {...settings}>
                     {this.props.images.map((path, i) => (
                         <div key={i}>
-                            <img className="mx-auto" src={path} alt={'cat'} key={i}/>
+                            <Image centered={true} rounded={true} src={path} alt={'cat'} key={i} fluid />
                         </div>
                     ))}
                 </Slider>
-            </Container>
+            </Responsive>
         )
     }
 }
