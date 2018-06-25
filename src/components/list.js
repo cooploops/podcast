@@ -1,5 +1,5 @@
 import React from 'react';
-import {List, Image} from 'semantic-ui-react';
+import {List, Image, Segment} from 'semantic-ui-react';
 
 // TODO turn this into a map as it'll be likely props will be an array of results
  const PodcastList = props => {
@@ -9,7 +9,7 @@ import {List, Image} from 'semantic-ui-react';
          const defaultImg = podcast.raw.snippet.thumbnails.default.url;
 
          return (
-            <List.Item key={podcast.raw.id} onClick={() => props.onPodcastSelect(podcast)}>
+            <List.Item key={podcast.raw.id} onClick={() => props.onPodcastSelect(podcast)} as={Segment}>
                 <Image src={defaultImg} size='tiny'/>
                 <List.Content>
                     <List.Header>
@@ -25,7 +25,7 @@ import {List, Image} from 'semantic-ui-react';
 
     return (
     <div>
-        <List bulleted relaxed link>
+        <List relaxed link>
             {podcastList}
         </List>
     </div>

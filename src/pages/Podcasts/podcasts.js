@@ -5,6 +5,7 @@ import VideoDetail from '../../components/videoDetail';
 import axios from 'axios';
 import Fuse from 'fuse.js';
 import PodcastList from '../../components/list';
+import {Grid} from 'semantic-ui-react';
 
 class Podcasts extends Component{
 
@@ -65,13 +66,23 @@ class Podcasts extends Component{
         const search = _.debounce(term => {this.podcastSearch(term)}, 300);
 
         return(
-            <div>
-                <VideoDetail video={this.state.selectedPodcast}/>
-                <SearchBar onSearchTermChange={search} />
-                <PodcastList
-                onPodcastSelect = {selectedPodcast => this.setState({selectedPodcast})} 
-                podcasts={this.state.filteredVideos}/>
-            </div>
+            <Grid container={true}>
+                <Grid.Row columns={1}>
+                    <Grid.Column>
+                        <VideoDetail video={this.state.selectedPodcast}/>
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row columns={1} centered>
+                    <Grid.Column width={6}>
+                        <SearchBar onSearchTermChange={search} />
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                    <PodcastList
+                    onPodcastSelect = {selectedPodcast => this.setState({selectedPodcast})} 
+                    podcasts={this.state.filteredVideos}/>
+                </Grid.Row>
+            </Grid>
         )
     }
 }

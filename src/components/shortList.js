@@ -8,7 +8,6 @@ const ShortList = props => {
         } else {
         const miniList = props.podcasts.map((podcast) => {
 
-            // set it up so that when a list item is click that it opens up in a modal on the home page with the embedded youtube video ready to play
             const defaultImg = podcast.raw.snippet.thumbnails.default.url;
             return (
             <List.Item key={podcast.raw.id} onClick={() => props.onVideoSelect(podcast)}>

@@ -28,7 +28,7 @@ const VideoModal = props => {
                     aspectRatio='16:9'
                     id={props.video.raw.snippet.resourceId.videoId}
                     source='youtube'
-                    placeholder={props.video.raw.snippet.thumbnails.maxres.url} />
+                    placeholder={props.video.raw.snippet.thumbnails.maxres ? props.video.raw.snippet.thumbnails.maxres.url : props.video.raw.snippet.thumbnails.standard.url} />
             </Modal.Content>
         </Responsive>
     );
