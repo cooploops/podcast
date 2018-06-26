@@ -1,21 +1,35 @@
 import React from 'react';
+import { Segment, Embed, Header } from 'semantic-ui-react';
 
-const videoDetail = ({video}) => {
-if(!video){
-    return <div>Loading...</div>;
-}
+const videoDetail = ({ video }) => {
+    const segStyle = {
+        'marginRight': 'auto',
+        'marginLeft': 'auto'
+    }
+    if (!video) {
+        return <Segment style={segStyle} raised compact>Select a podcast below</Segment>;
+    }
 
-const videoId = video.raw.snippet.resourceId.videoId;
-const url = `https://www.youtube.com/embed/${videoId}`
-    return(
-        <div className="video-detail col-md-8">
-            <div className="embed-responsive embed-responsive-16by9">
-                <iframe className="embed-responsive-item" src={url} title={video.raw.snippet.title}></iframe>
-            </div>
-            <div className="details">
-                <div>{video.raw.snippet.title}</div>
-                <div>{video.raw.snippet.description}</div>    
-            </div>
+    const videoId = video.raw.snippet.resourceId.videoId;
+    return (
+        <div>
+            <Embed
+                autoplay={false}
+                hd={false}
+                id={videoId}
+                iframe={{
+                    allowFullScreen: true,
+                    style: {
+                        padding: 10
+                    },
+                }}
+                placeholder={video.raw.snippet.thumbnails.maxres ? video.raw.snippet.thumbnails.maxres.url : video.raw.snippet.thumbnails.standard.url}
+                source='youtube'
+            />
+            <Segment>
+                <Header size='medium'>{video.raw.snippet.title}</Header>
+                {video.raw.snippet.description}
+            </Segment>
         </div>
     );
 };

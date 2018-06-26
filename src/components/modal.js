@@ -5,7 +5,7 @@ const VideoModal = props => {
     const modalStyle = {
         marginLeft: "auto",
         marginRight: "auto",
-        marginTop:"3rem"
+        marginTop: "3rem"
     }
 
     if (!props.video) {
@@ -27,6 +27,12 @@ const VideoModal = props => {
                     brandedUI
                     aspectRatio='16:9'
                     id={props.video.raw.snippet.resourceId.videoId}
+                    iframe={{
+                        allowFullScreen: true,
+                        style: {
+                            padding: 10
+                        },
+                    }}
                     source='youtube'
                     placeholder={props.video.raw.snippet.thumbnails.maxres ? props.video.raw.snippet.thumbnails.maxres.url : props.video.raw.snippet.thumbnails.standard.url} />
             </Modal.Content>

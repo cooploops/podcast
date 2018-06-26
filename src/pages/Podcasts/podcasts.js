@@ -5,7 +5,7 @@ import VideoDetail from '../../components/videoDetail';
 import axios from 'axios';
 import Fuse from 'fuse.js';
 import PodcastList from '../../components/list';
-import {Grid} from 'semantic-ui-react';
+import {Grid, Divider} from 'semantic-ui-react';
 
 class Podcasts extends Component{
 
@@ -67,11 +67,12 @@ class Podcasts extends Component{
 
         return(
             <Grid container={true}>
-                <Grid.Row columns={1}>
-                    <Grid.Column>
+                <Grid.Row columns={1} centered>
+                    <Grid.Column width={12}>
                         <VideoDetail video={this.state.selectedPodcast}/>
                     </Grid.Column>
                 </Grid.Row>
+                <Divider/>
                 <Grid.Row columns={1} centered>
                     <Grid.Column width={6}>
                         <SearchBar onSearchTermChange={search} />
