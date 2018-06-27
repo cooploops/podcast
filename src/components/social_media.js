@@ -1,51 +1,34 @@
 import React from 'react';
-import {Grid, Icon, Container, Divider} from 'semantic-ui-react';
-
-const styles = {
-    pointer: {
-        cursor: 'pointer'
-    }
-}
+import { Grid, Button } from 'semantic-ui-react';
 
 const SocialMedia = props => (
     <div>
-    <Container className="mb-5" textAlign="center">
-        <h4>
-            Want to reach out to us? <br />
-            Find us here!
-        </h4>
-    </Container>
-    <Grid columns={4}>
-        <Grid.Row textAlign='center'>
-            <Grid.Column>
-                <Icon link name='facebook f' />
-            </Grid.Column>
-            <Grid.Column>
-                <Icon link name='youtube' />
-            </Grid.Column>
-            <Grid.Column>
-                <Icon link name='twitter' />
-            </Grid.Column>
-            <Grid.Column>
-                <Icon link name='tumblr' />
-            </Grid.Column>
-        </Grid.Row>
-        <Divider horizontal />
-        <Grid.Row textAlign='center'>
-            <Grid.Column>
-                <Icon link name='instagram' />
-            </Grid.Column>
-            <Grid.Column>
-                <i style={styles.pointer} className="fab fa-itunes-note" />
-            </Grid.Column>
-            <Grid.Column>
-                <i style={styles.pointer} className="fab fa-medium-m" />
-            </Grid.Column>
-            <Grid.Column>
-                <i style={styles.pointer} className="fab fa-discord" /> 
-            </Grid.Column>
-        </Grid.Row>
-    </Grid>
+        <Grid stackable container>
+            <Grid.Row textAlign='center'>
+                <Grid.Column>
+                    <h4>
+                        Want to reach out to us? <br />
+                        Find us here!
+                    </h4>
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row columns={1} centered>
+                    <Button circular color='facebook' icon='facebook' as='a' href='https://www.google.com/' target='_blank'>
+                        {/* <Icon name='facebook' /> */}
+                    </Button>
+                    <Button circular color='twitter' icon='twitter' as='a'>
+                        {/* <Icon name='twitter' /> Twitter */}
+                    </Button>
+            
+                    <Button circular color='instagram' icon='instagram' as='a'>
+                        {/* <Icon name='instagram' /> Instagram */}
+                    </Button>
+            
+                    <Button circular color='youtube' icon='youtube'as='a'>
+                        {/* <Icon name='youtube' /> YouTube */}
+                    </Button>
+            </Grid.Row>
+        </Grid>
     </div>
 );
 

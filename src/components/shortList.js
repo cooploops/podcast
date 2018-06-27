@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {List, Image} from 'semantic-ui-react';
+import {List, Image, Container} from 'semantic-ui-react';
 
 const ShortList = props => {
     const listStyle = {
@@ -21,8 +21,8 @@ const ShortList = props => {
             const defaultImg = podcast.raw.snippet.thumbnails.default.url;
             return (
             <List.Item style={listItemStyle} key={podcast.raw.id} onClick={() => props.onVideoSelect(podcast)}>
-                <Image src={defaultImg} size='tiny' verticalAlign='middle'/>
-                <List.Content verticalAlign='middle'>
+                <List.Content verticalAlign='middle' as={Container}>
+                <Image src={defaultImg} size='tiny' verticalAlign='middle'floated='left'/>
                     <List.Header>
                         {podcast.raw.snippet.title}
                     </List.Header>

@@ -11,7 +11,7 @@ export default class Navbar extends Component {
       const { activeItem } = this.state
   
       return (
-        <Menu borderless>
+        <Menu borderless fluid>
             <Menu.Item
             position='left'
             as={Link} to='/'>

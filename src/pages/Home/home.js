@@ -33,9 +33,9 @@ class Home extends Component {
                 video={this.state.selectedVideo}
                 close={this.handleCloseModal}/>
                 <Banner images={imagePaths} />
-                <Grid className='mt-3' divided columns={3}>
+                <Grid stackable divided centered>
                     <Grid.Row>
-                        <Grid.Column width={9}>
+                        <Grid.Column width={3}>
                             <SocialMedia />
                         </Grid.Column>
                         <Grid.Column width={3}>

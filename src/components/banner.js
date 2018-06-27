@@ -14,10 +14,14 @@ class Banner extends Component {
             easing: 'ease-out'
         };
 
+        const containerStyle = {
+            'marginBottom':'3em'
+        }
+
         //could just make an array of images and map over it
         // export carousel to it's own component and import into Banner
         return (
-            <Responsive as={Container}>
+            <Responsive style={containerStyle} as={Container}>
                 <Slider {...settings}>
                     {this.props.images.map((path, i) => (
                         <div key={i}>

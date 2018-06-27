@@ -5,7 +5,7 @@ import VideoDetail from '../../components/videoDetail';
 import axios from 'axios';
 import Fuse from 'fuse.js';
 import PodcastList from '../../components/list';
-import {Grid, Divider} from 'semantic-ui-react';
+import {Grid, Divider, Responsive} from 'semantic-ui-react';
 
 class Podcasts extends Component{
 
@@ -66,7 +66,7 @@ class Podcasts extends Component{
         const search = _.debounce(term => {this.podcastSearch(term)}, 300);
 
         return(
-            <Grid container={true}>
+            <Grid stackable container as={Responsive}>
                 <Grid.Row columns={1} centered>
                     <Grid.Column width={12}>
                         <VideoDetail video={this.state.selectedPodcast}/>
