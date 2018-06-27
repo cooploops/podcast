@@ -7,7 +7,7 @@ class Banner extends Component {
         const settings = {
             dots: true,
             autoplay: true,
-            autoplaySpeed: 10000,
+            autoplaySpeed: 5000,
             speed:1500,
             pauseOnDotsHover: true,
             pauseOnHover: true,
