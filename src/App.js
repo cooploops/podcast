@@ -5,13 +5,14 @@ import Footer from './components/footer';
 import Home from './pages/Home/home';
 import AboutUs from './pages/AboutUs/aboutUs';
 import Podcasts from './pages/Podcasts/podcasts';
+import MyProvider from './context/myProvider';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <MyProvider>
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
@@ -20,7 +21,7 @@ class App extends Component {
             <Route path='*' component={Home} />
           </Switch>
           <Footer />
-        </div>
+        </MyProvider>
       </BrowserRouter>
     );
   }
