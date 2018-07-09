@@ -6,6 +6,25 @@ const MyContext = React.createContext();
 export const MyConsumer = MyContext.Consumer;
 
 class MyProvider extends Component {
+    options = {
+        shouldSort:true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+            {
+                name: 'raw.snippet.title',
+                weight: 0.7
+            },
+            {
+                name: 'raw.snippet.description',
+                weight: 0.3
+            }
+        ]
+    }
+    
     state = {
         videos: [],
         filteredVideos: [],

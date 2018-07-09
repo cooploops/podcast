@@ -16,7 +16,7 @@ const VideoModal = props => {
     return (
         <Responsive as={Modal}
             style={modalStyle}
-            size='large'
+            size='small'
             key={props.video.raw.etag}
             closeIcon
             open={props.modalState}

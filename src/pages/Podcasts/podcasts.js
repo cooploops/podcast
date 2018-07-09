@@ -8,59 +8,6 @@ import {MyConsumer} from '../../context/myProvider';
 
 class Podcasts extends Component{
 
-    // state = {
-    //     storedVideos:[],
-    //     filteredVideos:[],
-    //     selectedPodcast: null
-    // }
-    options = {
-        shouldSort:true,
-        threshold: 0.6,
-        location: 0,
-        distance: 100,
-        maxPatternLength: 32,
-        minMatchCharLength: 1,
-        keys: [
-            {
-                name: 'raw.snippet.title',
-                weight: 0.7
-            },
-            {
-                name: 'raw.snippet.description',
-                weight: 0.3
-            }
-        ]
-    }
-
-    // componentDidMount(){
-    //     // axios request to cloud function that performs YT api search of most recent uploads playlist and store in state of storedVideos and filteredVideos
-    //     axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/Ollie")
-    //     .then(result => {
-    //         console.log(result);
-    //         this.setState({
-    //             storedVideos:result.data,
-    //             filteredVideos: result.data
-    //         });
-    //         console.log(this.state);
-    //     })
-    //     .catch(error => console.log(error));
-    // }
-
-    // podcastSearch(term){
-    //     if(!term){
-    //         this.setState({
-    //             filteredVideos:this.state.storedVideos
-    //         })
-    //     } else {
-    //         const fuse = new Fuse(this.state.storedVideos, this.options);
-    //         const results = fuse.search(term);
-    //         this.setState({
-    //             filteredVideos: results
-    //         })
-    //     console.log(this.state.filteredVideos);
-    //     }
-    // }
-
     render(){
     
         return(

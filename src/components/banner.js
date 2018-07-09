@@ -10,7 +10,6 @@ class Banner extends Component {
             autoplaySpeed: 5000,
             speed:1500,
             pauseOnDotsHover: true,
-            pauseOnHover: true,
             easing: 'ease-out'
         };
 

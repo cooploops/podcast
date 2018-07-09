@@ -5,7 +5,6 @@ import ShortList from '../../components/shortList';
 import VideoModal from '../../components/modal';
 import {MyConsumer} from '../../context/myProvider';
 
-
 import { Grid, Header } from 'semantic-ui-react';
 
 class Home extends Component {
