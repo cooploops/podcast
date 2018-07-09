@@ -9,21 +9,6 @@ import {MyConsumer} from '../../context/myProvider';
 import { Grid, Header } from 'semantic-ui-react';
 
 class Home extends Component {
-    state = {
-        // videos: [],
-        modalOpen: false,
-        selectedVideo: null
-    };
-
-    handleCloseModal = () => this.setState({ modalOpen: false });
-
-    // componentDidMount() {
-    //     axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/Ollie")
-    //         .then(result => {
-    //             this.setState({ videos: result.data });
-    //         })
-    //         .catch(error => console.log(error));
-    // }
 
     render() {
         const imagePaths = ["http://placekitten.com/g/800/500", "http://placekitten.com/g/800/500", "http://placekitten.com/g/800/500"]
@@ -33,9 +18,9 @@ class Home extends Component {
                     {(context) => (
                         <React.Fragment>
                             <VideoModal
-                                modalState={this.state.modalOpen}
-                                video={this.state.selectedVideo}
-                                close={this.handleCloseModal} />
+                                modalState={context.state.modalOpen}
+                                video={context.state.selectedVideo}
+                                close={context.state.handleCloseModal} />
                             <Banner images={imagePaths} />
                             <Grid stackable divided centered>
                                 <Grid.Row>
@@ -47,20 +32,16 @@ class Home extends Component {
                                             Most Recent
                                         </Header>
                                         <ShortList podcasts={context.state.videos}
-                                            onVideoSelect={selectedVideo => {
-                                                this.setState({ selectedVideo, modalOpen: true });
-                                            }
-                                            } />
+                                            onVideoSelect={context.state.selectVideo}
+                                            />
                                     </Grid.Column>
                                     <Grid.Column width={3}>
                                         <Header as='h3' textAlign='center'>
                                             Most Popular
                                         </Header>
                                         <ShortList podcasts={context.state.videos}
-                                            onVideoSelect={selectedVideo => {
-                                                this.setState({ selectedVideo, modalOpen: true });
-                                            }
-                                            } />
+                                            onVideoSelect={context.state.selectVideo}
+                                            />
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>
