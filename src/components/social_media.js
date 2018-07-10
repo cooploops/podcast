@@ -3,7 +3,7 @@ import { Grid, Button } from 'semantic-ui-react';
 
 const SocialMedia = props => (
     <div>
-        <Grid stackable container>
+        <Grid stackable>
             <Grid.Row textAlign='center'>
                 <Grid.Column>
                     <h4>
@@ -12,7 +12,7 @@ const SocialMedia = props => (
                     </h4>
                 </Grid.Column>
             </Grid.Row>
-            <Grid.Row columns={1} centered>
+            <Grid.Row centered>
                     <Button circular color='facebook' icon='facebook' as='a' href='https://www.google.com/' target='_blank'>
                         {/* <Icon name='facebook' /> */}
                     </Button>

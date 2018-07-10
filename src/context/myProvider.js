@@ -29,6 +29,7 @@ class MyProvider extends Component {
         videos: [],
         filteredVideos: [],
         modalOpen: false,
+        podcastModalOpen: false,
         selectedVideo: null,
         selectedPodcast: null,
         podcastSearch: (term) => {
@@ -46,9 +47,10 @@ class MyProvider extends Component {
             }
         },
         handleCloseModal: () => this.setState({ modalOpen: false }),
+        handleClosePodcastModal: () => this.setState({podcastModalOpen: false}),
         selectVideo: (selectedVideo) => {
             this.setState({ selectedVideo, modalOpen: true })},
-        selectPodcast: selectedPodcast => this.setState({selectedPodcast})
+        selectPodcast: selectedPodcast => this.setState({selectedPodcast, podcastModalOpen: true})
     }
 
     componentDidMount() {

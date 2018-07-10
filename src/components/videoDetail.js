@@ -2,18 +2,20 @@ import React from 'react';
 import { Segment, Embed, Header } from 'semantic-ui-react';
 
 const videoDetail = ({ video }) => {
-    const segStyle = {
-        'marginRight': 'auto',
-        'marginLeft': 'auto'
-    }
-    if (!video) {
-        return <Segment style={segStyle} raised compact>Select a podcast below</Segment>;
-    }
+    // const segStyle = {
+    //     'marginRight': 'auto',
+    //     'marginLeft': 'auto'
+    // }
+
+    // if (!video) {
+    //     return <Segment style={segStyle} compact>Select a podcast below</Segment>;
+    // }
 
     const videoId = video.raw.snippet.resourceId.videoId;
     return (
         <div>
             <Embed
+                className="videoDetail"
                 autoplay={false}
                 hd={false}
                 id={videoId}

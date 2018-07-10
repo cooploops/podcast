@@ -5,12 +5,12 @@ import ShortList from '../../components/shortList';
 import VideoModal from '../../components/modal';
 import {MyConsumer} from '../../context/myProvider';
 
-import { Grid, Header } from 'semantic-ui-react';
+import { Grid, Header, Responsive } from 'semantic-ui-react';
 
 class Home extends Component {
 
     render() {
-        const imagePaths = ["http://placekitten.com/g/800/500", "http://placekitten.com/g/800/500", "http://placekitten.com/g/800/500"]
+        const imagePaths = ["http://placekitten.com/g/700/400", "http://placekitten.com/g/700/400", "http://placekitten.com/g/700/400"]
         return (
             <div>
                 <MyConsumer>
@@ -20,13 +20,17 @@ class Home extends Component {
                                 modalState={context.state.modalOpen}
                                 video={context.state.selectedVideo}
                                 close={context.state.handleCloseModal} />
-                            <Banner images={imagePaths} />
-                            <Grid stackable divided centered>
+                            <Responsive as={Grid} stackable divided centered container={true}>
                                 <Grid.Row>
-                                    <Grid.Column width={3}>
+                                    <Grid.Column columns={1}>
+                                        <Banner images={imagePaths} />
+                                    </Grid.Column>
+                                </Grid.Row>
+                                <Grid.Row columns={3}>
+                                    <Grid.Column width={4}>
                                         <SocialMedia />
                                     </Grid.Column>
-                                    <Grid.Column width={3}>
+                                    <Grid.Column width={4}>
                                         <Header as='h3' textAlign='center'>
                                             Most Recent
                                         </Header>
@@ -34,7 +38,7 @@ class Home extends Component {
                                             onVideoSelect={context.state.selectVideo}
                                             />
                                     </Grid.Column>
-                                    <Grid.Column width={3}>
+                                    <Grid.Column width={4}>
                                         <Header as='h3' textAlign='center'>
                                             Most Popular
                                         </Header>
@@ -43,7 +47,7 @@ class Home extends Component {
                                             />
                                     </Grid.Column>
                                 </Grid.Row>
-                            </Grid>
+                            </Responsive>
                         </React.Fragment>
                     )}
                 </MyConsumer>

@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import { Container, Responsive, Image } from 'semantic-ui-react';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import Slider from 'react-slick';
 
 class Banner extends Component {
+    constructor(props){
+        super(props);
+
+        this.slider = null;
+    }
+
+    preventScroll = () => {
+        if(this.slider){
+            this.slider.blur();
+        }
+    }
 
     render(){  
         const settings = {
@@ -23,7 +33,11 @@ class Banner extends Component {
         //could just make an array of images and map over it
         // export carousel to it's own component and import into Banner
         return (
-            <Responsive style={containerStyle} as={Container}>
+            <div 
+            ref={(selection) => this.slider = selection}>
+            <Responsive 
+            style={containerStyle} 
+            as={Container}>
                 <Slider {...settings}>
                     {this.props.images.map((path, i) => (
                         <div key={i}>
@@ -39,6 +53,7 @@ class Banner extends Component {
                     ))}
                 </Slider>
             </Responsive>
+            </div>
         )
     }
 }
