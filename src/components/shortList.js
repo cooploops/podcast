@@ -5,12 +5,13 @@ import {List, Image, Container} from 'semantic-ui-react';
 const ShortList = props => {
     const listStyle = {
         'maxHeight':'15em',
-        'minWidth': '90%',
+        'minWidth': '95%',
         'overflowY':'auto'
     }
 
     const listItemStyle = {
-        'minWidth':'5em'
+        'minWidth':'5em',
+        'cursor':'pointer'
     }
 
         if(!props.podcasts){
