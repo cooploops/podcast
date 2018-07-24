@@ -14,6 +14,7 @@ const style = {
 }
 
 const phantom = {
+    background: "rbg(0,0,0,0.0)",
   display: 'block',
   padding: '1rem',
   height: '3.2rem',
