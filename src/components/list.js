@@ -9,13 +9,20 @@ import {List, Image, Segment, Container} from 'semantic-ui-react';
          'overflowY':'auto',
          'border': 'solid black 1px',
          'borderRadius': '5px',
-         'padding': '1em'
+         'padding': '1em',
+         'background': 'rgba(0,0,0,0.05)'
      }
 
      const listItemStyle = {
          'maxWidth':'99%',
          'cursor': 'pointer'
      }
+
+     const imgStyle = {
+        'padding': '2px',
+        'border':'1px solid rbga(0,0,0,0.05)',
+        'borderRadius':'5px'
+    }
 
      const podcastList = props.podcasts.map((podcast) => {
 
@@ -35,7 +42,8 @@ import {List, Image, Segment, Container} from 'semantic-ui-react';
                 verticalAlign='middle' 
                 src={defaultImg} 
                 size='small' 
-                floated='left'/>
+                floated='left'
+                style={imgStyle}/>
                     <List.Header>
                         {podcast.raw.snippet.title}
                     </List.Header>

@@ -14,6 +14,12 @@ const ShortList = props => {
         'cursor':'pointer'
     }
 
+    const imgStyle = {
+        'padding': '2px',
+        'border':'1px solid rbga(0,0,0,0.05)',
+        'borderRadius':'5px'
+    }
+
         if(!props.podcasts){
             return <div> no videos detected </div>
         } else {
@@ -23,7 +29,7 @@ const ShortList = props => {
             return (
             <List.Item style={listItemStyle} key={podcast.raw.id} onClick={() => props.onVideoSelect(podcast)}>
                 <List.Content verticalAlign='middle' as={Container}>
-                <Image src={defaultImg} size='tiny' verticalAlign='middle'floated='left'/>
+                    <Image style={imgStyle} src={defaultImg} size='tiny' verticalAlign='middle'floated='left'/>
                     <List.Header>
                         {podcast.raw.snippet.title}
                     </List.Header>
@@ -34,7 +40,7 @@ const ShortList = props => {
 
     return (
     <div>
-        <List style={listStyle} relaxed link>
+        <List style={listStyle} className='shortlist' relaxed link>
             {miniList}
         </List>
     </div>

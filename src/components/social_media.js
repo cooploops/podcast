@@ -6,7 +6,7 @@ const SocialMedia = props => (
         <Grid stackable>
             <Grid.Row textAlign='center'>
                 <Grid.Column>
-                    <h4>
+                    <h4 className='socialMediaText'>
                         Want to reach out to us? <br />
                         Find us here!
                     </h4>

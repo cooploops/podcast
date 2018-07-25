@@ -20,17 +20,17 @@ class Home extends Component {
                                 modalState={context.state.modalOpen}
                                 video={context.state.selectedVideo}
                                 close={context.state.handleCloseModal} />
-                            <Responsive as={Grid} stackable divided centered container={true}>
+                            <Responsive as={Grid} stackable centered container={true} columns='equal'>
                                 <Grid.Row>
                                     <Grid.Column columns={1}>
                                         <Banner images={imagePaths} />
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row columns={3}>
-                                    <Grid.Column width={4}>
+                                    <Grid.Column width={5}>
                                         <SocialMedia />
                                     </Grid.Column>
-                                    <Grid.Column width={4}>
+                                    <Grid.Column width={5}>
                                         <Header as='h3' textAlign='center'>
                                             Most Recent
                                         </Header>
@@ -38,11 +38,12 @@ class Home extends Component {
                                             onVideoSelect={context.state.selectVideo}
                                             />
                                     </Grid.Column>
-                                    <Grid.Column width={4}>
+                                    <Grid.Column width={5}>
                                         <Header as='h3' textAlign='center'>
                                             Most Popular
                                         </Header>
-                                        <ShortList podcasts={context.state.videos}
+                                        <ShortList
+                                            podcasts={context.state.videos}
                                             onVideoSelect={context.state.selectVideo}
                                             />
                                     </Grid.Column>
