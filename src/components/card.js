@@ -3,7 +3,7 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 
 const bioCard = (props) => (
   <Card>
-    <Image src={props.headshot} circular alt='headshot'/>
+    <Image src={props.headshot} alt='headshot' size="medium"/>
     <Card.Content>
       <Card.Header>
         {props.name}
@@ -27,6 +27,16 @@ const bioCard = (props) => (
       <a href={props.insta} target="_blank">
       <Icon link name='instagram' />
       </a>
+      {props.github && 
+      <a href={props.github} target="_blank">
+        <Icon link name='github' />
+      </a>
+      }
+      {props.tumblr &&
+        <a href={props.tumblr} target="_blank">
+        <Icon link name='tumblr' />
+      </a>
+      }
     </Card.Content>
   </Card>
 )
