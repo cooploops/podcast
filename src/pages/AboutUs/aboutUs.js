@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Grid} from 'semantic-ui-react';
 import Card from '../../components/card';
 import portrait2 from '../../assets/images/hawaiiTemple.jpg';
-import portrait1 from '../../assets/images/ollie1.jpg';
+import portrait1 from '../../assets/images/jonoProfessional.jpg';
 import portrait3 from '../../assets/images/corinneHawaii.jpg';
 
 class aboutUs extends Component{
@@ -17,7 +17,8 @@ class aboutUs extends Component{
                     headshot={portrait2}
                     name='TJ'
                     job='Web Developer/Project Manager'
-                    description="Hi I'm a dog and I love belly rubs and food"
+                    description="Hum-bitious workaholic, nerd connoisseur, and struggling ageing millenial. I find the silver lining in life's attempts
+                    at keeping me grounded through humor, cliche motvational phrases, and chipotle"
                     insta='https://www.instagram.com/coopl00ps/'
                     twitter='https://twitter.com/tjcoop321'
                     github='https://github.com/cooploops/'

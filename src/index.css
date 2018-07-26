@@ -42,7 +42,7 @@ body {
 }
 
 .ui.list>.item:hover {
-  background-color: rgba(26, 83, 92);
+  background-color: rgba(26, 83, 92, 0.3);
 }
 
 .ui.list .list>.item .description, .ui.list>.item .description {

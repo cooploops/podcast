@@ -15,7 +15,8 @@ import {List, Image, Segment, Container} from 'semantic-ui-react';
 
      const listItemStyle = {
          'maxWidth':'99%',
-         'cursor': 'pointer'
+         'cursor': 'pointer',
+         'padding':'5px'
      }
 
      const imgStyle = {
