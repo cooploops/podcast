@@ -3,7 +3,7 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 
 const bioCard = (props) => (
   <Card>
-    <Image src={props.headshot} alt='headshot' size="medium"/>
+    <Image src={props.headshot} alt='headshot'/>
     <Card.Content>
       <Card.Header>
         {props.name}

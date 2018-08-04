@@ -3,6 +3,7 @@ import Banner from '../../components/banner';
 import SocialMedia from '../../components/social_media';
 import ShortList from '../../components/shortList';
 import VideoModal from '../../components/modal';
+import Loading from '../../components/loadingIcon';
 import {MyConsumer} from '../../context/myProvider';
 
 import { Grid, Header, Responsive } from 'semantic-ui-react';
@@ -14,7 +15,13 @@ class Home extends Component {
         return (
             <div>
                 <MyConsumer>
-                    {(context) => (
+                    {(context) => {
+                        if(!context.state.videos){
+                            return (
+                                <Loading />
+                            )
+                        }
+                        return (
                         <React.Fragment>
                             <VideoModal
                                 modalState={context.state.modalOpen}
@@ -50,7 +57,8 @@ class Home extends Component {
                                 </Grid.Row>
                             </Responsive>
                         </React.Fragment>
-                    )}
+                            )
+                    }}
                 </MyConsumer>
             </div>
         )

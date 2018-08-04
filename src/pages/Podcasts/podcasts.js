@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import SearchBar from '../../components/searchbar';
 import VideoModal from '../../components/modal';
 import PodcastList from '../../components/list';
+import Loading from '../../components/loadingIcon';
 import {Grid, Responsive} from 'semantic-ui-react';
 import {MyConsumer} from '../../context/myProvider';
 
@@ -12,7 +13,13 @@ class Podcasts extends Component{
     
         return(
             <MyConsumer>
-                {(context) => (
+                {(context) => {
+                    if(context.state.videos.length <= 0) {
+                        return (
+                            <Loading />
+                        )
+                    }
+                    return (
                     <Grid stackable container as={Responsive}>
                         <VideoModal
                         modalState={context.state.podcastModalOpen}
@@ -29,7 +36,8 @@ class Podcasts extends Component{
                             podcasts={context.state.filteredVideos}/>
                         </Grid.Row>
                     </Grid>
-                )}
+                    )
+                }}
 
             </MyConsumer>
         )
