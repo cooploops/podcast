@@ -6,11 +6,16 @@ import portrait1 from '../../assets/images/jonoProfessionalCropped.jpg';
 import portrait3 from '../../assets/images/corinneHawaii.jpg';
 
 class aboutUs extends Component {
+    
     state={}
 
     render(){
+        const style = {
+            paddingBottom:'25vh'
+        }
+
         return(
-        <Grid container stackable relaxed columns={3}>
+        <Grid style={style} container stackable relaxed columns={3}>
             <Grid.Row>
                 <Grid.Column>
                     <Card 

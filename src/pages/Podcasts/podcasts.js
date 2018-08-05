@@ -10,17 +10,21 @@ import {MyConsumer} from '../../context/myProvider';
 class Podcasts extends Component{
 
     render(){
+
+        const style = {
+            paddingBottom: '5vh'
+        }
     
         return(
             <MyConsumer>
                 {(context) => {
                     if(context.state.videos.length <= 0) {
                         return (
-                            <Loading />
+                            <Loading/>
                         )
                     }
                     return (
-                    <Grid stackable container as={Responsive}>
+                    <Grid style={style} stackable container as={Responsive}>
                         <VideoModal
                         modalState={context.state.podcastModalOpen}
                         video={context.state.selectedPodcast}
