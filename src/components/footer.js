@@ -11,6 +11,7 @@ const style = {
     bottom: "0",
     height: "2rem",
     width: "100%",
+    fontWeight: 'bold'
 }
 
 const phantom = {

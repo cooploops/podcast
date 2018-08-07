@@ -27,6 +27,9 @@ const SocialMedia = props => (
                     <Button circular color='youtube' icon='youtube'as='a'>
                         {/* <Icon name='youtube' /> YouTube */}
                     </Button>
+                    <Button circular color='google plus' icon='rss'as='a' href='https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/rssFeed' target='_blank'>
+                        {/* <Icon name='youtube' /> YouTube */}
+                    </Button>
             </Grid.Row>
         </Grid>
     </div>

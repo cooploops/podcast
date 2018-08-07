@@ -26,6 +26,8 @@ class MyProvider extends Component {
     }
     
     state = {
+        timeoutOccur: false,
+        changeTimeoutOccur: () => this.setState({timeoutOccur: true}),
         videos: [],
         filteredVideos: [],
         modalOpen: false,

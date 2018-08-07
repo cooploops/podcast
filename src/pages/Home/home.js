@@ -16,7 +16,10 @@ class Home extends Component {
             <div>
                 <MyConsumer>
                     {(context) => {
-                        if(!context.state.videos){
+                        setTimeout(() => {
+                            context.state.changeTimeoutOccur();
+                        },2000);
+                        if(context.state.videos.length <= 0 || context.state.timeoutOccur === false){
                             return (
                                 <Loading />
                             )
