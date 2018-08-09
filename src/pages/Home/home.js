@@ -32,7 +32,7 @@ class Home extends Component {
                                 close={context.state.handleCloseModal} />
                             <Responsive as={Grid} stackable centered container={true} columns='equal'>
                                 <Grid.Row>
-                                    <Grid.Column columns={1}>
+                                    <Grid.Column>
                                         <Banner images={imagePaths} />
                                     </Grid.Column>
                                 </Grid.Row>

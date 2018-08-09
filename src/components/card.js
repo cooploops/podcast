@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react'
 
 const bioCard = (props) => (
-  <Card color='red'>
+  <Card color='red' centered>
     <Image src={props.headshot} alt='headshot'/>
     <Card.Content>
       <Card.Header>

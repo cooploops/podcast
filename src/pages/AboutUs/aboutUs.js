@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Segment, Header, Image, Divider} from 'semantic-ui-react';
+import {Grid, Segment, Header, Image, Divider, Responsive} from 'semantic-ui-react';
 import Card from '../../components/card';
 import portrait2 from '../../assets/images/hawaiiTempleCropped.jpg';
 import portrait1 from '../../assets/images/jonoProfessionalCropped.jpg';
@@ -16,13 +16,12 @@ class aboutUs extends Component {
         }
 
         return(
-        <Grid style={style} container stackable relaxed>
+        <Responsive as={Grid} style={style} container stackable relaxed>
             <Grid.Row centered>
                 <Grid.Column width={13}>
                     <Header as='h1' textAlign='center' attached='top' style={headerStyle}>About Us</Header>
                     <Segment attached padded>
-                    <Image src='https://media.giphy.com/media/3oz8xLlw6GHVfokaNW/giphy.gif' size='tiny' floated='right' rounded/>
-                        <p><b>If No Can</b> is a weekly podcast show featuring topics that primarily pertain to us, and people like us, the struggling millenial. If No Can borrows it's name
+                        <p><b>If No Can</b> is a weekly podcast show featuring topics that primarily pertain to us, and people like us, the struggling millennial. If No Can borrows it's name
                         from a Hawaiian Pidgin philosophy of "If can, can, If no can, no can," which means, if I get to it great, if not, no big deal. It's a don't sweat the small stuff mentality, and
                         focus on the things within your control.
                         </p>
@@ -38,7 +37,7 @@ class aboutUs extends Component {
             <Divider >
                 <Header as='h3' textAlign='center'>Meet The Cast</Header>
             </Divider>
-            <Grid.Row centered>
+            <Grid.Row centered columns='equal'>
                 <Grid.Column width={4}>
                     <Card 
                     headshot={portrait2}
@@ -75,7 +74,7 @@ class aboutUs extends Component {
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row centered columns='equal'>
-                <Grid.Column width={4}>
+                <Grid.Column stretched width={4}>
                     <Header as='h3' textAlign='center'>Send us an email by clicking the image below!</Header>
                     <Image
                     centered
@@ -88,7 +87,7 @@ class aboutUs extends Component {
                     target='_blank'/>
                 </Grid.Column>
             </Grid.Row>
-        </Grid>
+        </Responsive>
         )
     }
 }
