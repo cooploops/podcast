@@ -13,22 +13,15 @@ const SocialMedia = props => (
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row centered>
-                    <Button circular color='facebook' icon='facebook' as='a' href='https://www.google.com/' target='_blank'>
-                        {/* <Icon name='facebook' /> */}
+                    <Button circular color='facebook' icon='facebook' as='a' href='https://www.facebook.com/IfNoCan/' target='_blank'>
                     </Button>
-                    <Button circular color='twitter' icon='twitter' as='a'>
-                        {/* <Icon name='twitter' /> Twitter */}
+                    <Button circular color='twitter' icon='twitter' as='a' href='https://twitter.com/IfNoCan' target='_blank'>
                     </Button>
-            
-                    <Button circular color='instagram' icon='instagram' as='a'>
-                        {/* <Icon name='instagram' /> Instagram */}
+                    <Button circular color='instagram' icon='instagram' as='a' href='https://www.instagram.com/ifnocan/' target='_blank'>
                     </Button>
-            
-                    <Button circular color='youtube' icon='youtube'as='a'>
-                        {/* <Icon name='youtube' /> YouTube */}
+                    <Button circular color='youtube' icon='youtube'as='a' href='https://www.youtube.com/channel/UCQQ-SrkqkSJ01C9vV99oFJg/' target='_blank'>
                     </Button>
                     <Button circular color='google plus' icon='rss'as='a' href='https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/rssFeed' target='_blank'>
-                        {/* <Icon name='youtube' /> YouTube */}
                     </Button>
             </Grid.Row>
         </Grid>
