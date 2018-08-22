@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Menu, Image} from 'semantic-ui-react';
+import logo from '../assets/images/pineapplesfinished4-dark.svg';
 
 export default class Navbar extends Component {
     state = {};
@@ -15,7 +16,7 @@ export default class Navbar extends Component {
             <Menu.Item
             position='left'
             as={Link} to='/'>
-                <Image src="http://placekitten.com/g/75/75"
+                <Image src={logo}
                 alt='logo'
                 size='mini'
                 circular/>

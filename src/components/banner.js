@@ -1,28 +1,18 @@
 import React, {Component} from 'react';
 import { Container, Responsive, Image } from 'semantic-ui-react';
 import Slider from 'react-slick';
+import bigLogoDarkBackground from '../assets/images/pineapplesfinished4-dark.jpg';
+import bigLogoClearBackground from '../assets/images/pineapplesfinished4.png';
 
 class Banner extends Component {
-    constructor(props){
-        super(props);
-
-        this.slider = null;
-    }
-
-    preventScroll = () => {
-        if(this.slider){
-            this.slider.blur();
-        }
-    }
 
     render(){  
         const settings = {
             dots: true,
             autoplay: true,
-            autoplaySpeed: 5000,
-            speed:1500,
-            pauseOnDotsHover: true,
-            easing: 'ease-out'
+            infinite: true,
+            autoplaySpeed: 4500,
+            speed: 2000 
         };
 
         const containerStyle = {
@@ -33,27 +23,29 @@ class Banner extends Component {
         //could just make an array of images and map over it
         // export carousel to it's own component and import into Banner
         return (
-            <div 
-            ref={(selection) => this.slider = selection}>
             <Responsive 
             style={containerStyle} 
             as={Container}>
                 <Slider {...settings}>
-                    {this.props.images.map((path, i) => (
-                        <div key={i}>
+                        <div>
                             <Image 
                             centered={true} 
                             rounded={true} 
-                            src={path} 
-                            alt={'cat'} 
-                            key={i} 
-                            fluid
+                            src={bigLogoDarkBackground} 
+                            alt={'If No Can Logo'}
                            />
                         </div>
-                    ))}
+                        <div>
+                            <Image 
+                            centered={true} 
+                            rounded={true} 
+                            src={bigLogoClearBackground} 
+                            alt={'If No Can Logo'}  
+                            size='huge'
+                           />
+                        </div>
                 </Slider>
             </Responsive>
-            </div>
         )
     }
 }

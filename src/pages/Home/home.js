@@ -11,15 +11,14 @@ import { Grid, Header, Responsive } from 'semantic-ui-react';
 class Home extends Component {
 
     render() {
-        const imagePaths = ["http://placekitten.com/g/700/400", "http://placekitten.com/g/700/400", "http://placekitten.com/g/700/400"]
         return (
             <div>
                 <MyConsumer>
                     {(context) => {
-                        setTimeout(() => {
+                        {/* setTimeout(() => {
                             context.state.changeTimeoutOccur();
-                        },2000);
-                        if(context.state.videos.length <= 0 || context.state.timeoutOccur === false){
+                        },1500); */}
+                        if(context.state.videos.length <= 0){
                             return (
                                 <Loading />
                             )
@@ -33,7 +32,7 @@ class Home extends Component {
                             <Responsive as={Grid} stackable centered container={true} columns='equal'>
                                 <Grid.Row>
                                     <Grid.Column>
-                                        <Banner images={imagePaths} />
+                                        <Banner/>
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row columns={3}>
