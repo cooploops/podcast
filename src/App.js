@@ -5,6 +5,7 @@ import Footer from './components/footer';
 import Home from './pages/Home/home';
 import AboutUs from './pages/AboutUs/aboutUs';
 import Podcasts from './pages/Podcasts/podcasts';
+import Admin from './pages/Admin/admin';
 import MyProvider from './context/myProvider';
 import './App.css';
 
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/podcasts' component={Podcasts} />
             <Route exact path='/about' component={AboutUs} />
+            <Route exact path='/adminconsole' component={Admin} />
             <Route path='*' component={Home} />
           </Switch>
           <Footer />
