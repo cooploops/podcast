@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Container } from 'semantic-ui-react';
+import axios from 'axios';
+import firebase from 'firebase';
 
 class Admin extends Component {
 
@@ -10,6 +12,7 @@ class Admin extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        axios.post()
 
         //clear form state
         this.setState({
