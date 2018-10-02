@@ -45,13 +45,13 @@ class MyProvider extends Component {
                 this.setState({
                     filteredVideos: results
                 })
-            console.log(this.state.filteredVideos);
             }
         },
         handleCloseModal: () => this.setState({ modalOpen: false }),
         handleClosePodcastModal: () => this.setState({podcastModalOpen: false}),
         selectVideo: (selectedVideo) => {
-            this.setState({ selectedVideo, modalOpen: true })},
+            this.setState({ selectedVideo, modalOpen: true })
+        },
         selectPodcast: selectedPodcast => this.setState({selectedPodcast, podcastModalOpen: true})
     }
 
@@ -64,6 +64,15 @@ class MyProvider extends Component {
             });
         })
         .catch(error => console.log(error));
+        
+        // axios.get("https://us-central1-podcast-203603.cloudfunctions.net/mostRecent")
+        // .then(result => {
+        //     this.setState({
+        //         videos:result.data,
+        //         filteredVideos: result.data
+        //     });
+        // })
+        // .catch(error => console.log(error));
     }
 
     render() {
