@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { Button, Form, Container, Input, Progress } from 'semantic-ui-react';
-import axios from 'axios';
 import firebaseApp from '../../base';
 import firebase from 'firebase';
 
 class Admin extends Component {
 
-    state={
-        email:'',
-        password:'',
+    fileInput = React.createRef();
+    uploadTask;
+    db = firebaseApp.firestore();
+    firebaseStorage = firebaseApp.storage();
+    storageRefPoint = this.firebaseStorage.ref();
+
+    constructor(props) {
+        super(props);
+        this.db.settings({
+            timestampsInSnapshots: true
+        });
+    }
+
+    state = {
+        email: '',
+        password: '',
         authenticated: false,
         currentUser: null,
         uploadBtnDisabled: true,
@@ -16,13 +28,16 @@ class Admin extends Component {
         uploadStart: false,
         uploadSuccess: false,
         showProgressBar: false,
-        percentComplete: 0
+        percentComplete: 0,
+        podcastMetaData: null,
+        episodeTitle: '',
+        episodeNumber: '',
+        episodeDescription: '',
+        episodeDownloadURL: ''
     }
-    fileInput = React.createRef();
-    uploadTask;
 
     handleSubmit = (e) => {
-        const {email, password} = this.state;
+        const { email, password } = this.state;
         e.preventDefault();
         firebaseApp.auth().signInWithEmailAndPassword(email, password)
             .catch(error => {
@@ -48,33 +63,38 @@ class Admin extends Component {
             });
             switch (snapshot.state) {
                 case firebase.storage.TaskState.RUNNING:
-                this.setState({
-                    uploadState: 'Upload in Progress',
-                    uploadStart: true
-                });
-                break;
+                    this.setState({
+                        uploadState: 'Upload in Progress',
+                        uploadStart: true
+                    });
+                    break;
                 case firebase.storage.TaskState.PAUSED:
-                this.setState({
-                    uploadState: 'Upload Pause'
-                });
-                break;
+                    this.setState({
+                        uploadState: 'Upload Pause'
+                    });
+                    break;
                 case firebase.storage.TaskState.CANCELED:
-                this.setState({
-                    uploadState: 'Upload Cancelled'
-                });
-                break;
+                    this.setState({
+                        uploadState: 'Upload Cancelled'
+                    });
+                    break;
                 case firebase.storage.TaskState.SUCCESS:
-                this.setState({
-                    uploadState: 'Upload Complete',
-                    uploadSuccess: true
-                });
-                break;
+                    this.setState({
+                        uploadState: 'Upload Complete',
+                        uploadSuccess: true
+                    });
+                    break;
             }
         }, (error) => {
             console.log(error);
             alert('an error occurred during upload, let TJ know so he can investigate');
         }, () => {
             console.log('upload complete');
+            this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+                this.setState({
+                    episodeDownloadURL: downloadURL
+                });
+            });
         });
     }
 
@@ -97,11 +117,19 @@ class Admin extends Component {
     componentWillMount() {
         firebaseApp.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
         firebaseApp.auth().onAuthStateChanged(user => {
-            if(user) {
+            if (user) {
                 this.setState({
                     authenticated: true,
                     currentUser: user
                 });
+                // perform grabbing of meta data of podcasts here
+
+                this.storageRefPoint.child(`/user/${this.state.currentUser.uid}/podcasts`).getMetadata()
+                    .then(metaData => {
+                        this.setState({
+                            podcastMetaData: metaData
+                        })
+                    })
             } else {
                 this.setState({
                     authenticated: false,
@@ -110,14 +138,11 @@ class Admin extends Component {
             }
         })
     }
-    
-    firebaseStorage = firebaseApp.storage();
-    storageRefPoint = this.firebaseStorage.ref();
 
     render() {
         const { email, password, authenticated, currentUser } = this.state;
 
-        if(authenticated && currentUser) {
+        if (authenticated && currentUser) {
             return (
                 <Container>
                     <Button primary onClick={this.signOut}>Sign Out</Button>
@@ -130,9 +155,33 @@ class Admin extends Component {
                         </Progress>
                     }
                     <Form onSubmit={this.handleFileSubmit}>
-                        <Form.Field>
+                        <Form.Group>
+                            <Form.Input type="text"
+                                label="Episode Title"
+                                name="episodeTitle"
+                                placeholder="Episode Title Here"
+                                width={13}
+                                required 
+                                onChange={this.handleInputChange}/>
+                            <Form.Input type="number"
+                                label="Episode Number"
+                                name="episodeNumber"
+                                placeholder="Episode Number Here"
+                                width={3}
+                                required
+                                onChange={this.handleInputChange} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.TextArea label="Episode Description"
+                                name="episodeDescription"
+                                placeholder="We talk about..."
+                                width={16}
+                                required
+                                onChange={this.handleInputChange} />
+                        </Form.Group>
+                        <Form.Field width={8}>
                             <label>Upload File(s)</label>
-                            <input type="file" id="file" name="file" ref={this.fileInput} onChange={() => this.setState({uploadBtnDisabled: false})}/>
+                            <input type="file" id="file" name="file" ref={this.fileInput} onChange={() => this.setState({ uploadBtnDisabled: false })} />
                         </Form.Field>
                         <Button primary type='submit' disabled={this.state.uploadBtnDisabled}>Upload</Button>
                     </Form>
@@ -144,11 +193,11 @@ class Admin extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Field required>
                             <label>Email</label>
-                            <input type="email" required placeholder="Email" name='email' value={email} onChange={this.handleInputChange}/>
+                            <input type="email" required placeholder="Email" name='email' value={email} onChange={this.handleInputChange} />
                         </Form.Field>
                         <Form.Field required>
                             <label>Password</label>
-                            <Input type="password" required placeholder="Password" name='password' value={password} onChange={this.handleInputChange}/>
+                            <Input type="password" required placeholder="Password" name='password' value={password} onChange={this.handleInputChange} />
                         </Form.Field>
                         <Button primary type='submit' disabled={!this.state.email || !this.state.password}>Submit</Button>
                     </Form>
