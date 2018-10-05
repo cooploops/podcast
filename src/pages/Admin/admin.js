@@ -36,7 +36,7 @@ class Admin extends Component {
         episodeDownloadURL: ''
     }
 
-    handleSubmit = (e) => {
+    handleLogin = (e) => {
         const { email, password } = this.state;
         e.preventDefault();
         firebaseApp.auth().signInWithEmailAndPassword(email, password)
@@ -53,49 +53,49 @@ class Admin extends Component {
 
     handleFileSubmit = (e) => {
         e.preventDefault();
-
-        this.uploadTask = this.storageRefPoint.child(`/user/${this.state.currentUser.uid}/podcasts`).put(this.fileInput.current.files[0]);
-        this.uploadTask.on('state_changed', (snapshot) => {
-            const percentProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            this.setState({
-                showProgressBar: true,
-                percentComplete: percentProgress
-            });
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.RUNNING:
-                    this.setState({
-                        uploadState: 'Upload in Progress',
-                        uploadStart: true
-                    });
-                    break;
-                case firebase.storage.TaskState.PAUSED:
-                    this.setState({
-                        uploadState: 'Upload Pause'
-                    });
-                    break;
-                case firebase.storage.TaskState.CANCELED:
-                    this.setState({
-                        uploadState: 'Upload Cancelled'
-                    });
-                    break;
-                case firebase.storage.TaskState.SUCCESS:
-                    this.setState({
-                        uploadState: 'Upload Complete',
-                        uploadSuccess: true
-                    });
-                    break;
-            }
-        }, (error) => {
-            console.log(error);
-            alert('an error occurred during upload, let TJ know so he can investigate');
-        }, () => {
-            console.log('upload complete');
-            this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-                this.setState({
-                    episodeDownloadURL: downloadURL
-                });
-            });
-        });
+        console.log(this.state);
+        // this.uploadTask = this.storageRefPoint.child(`/user/${this.state.currentUser.uid}/podcasts`).put(this.fileInput.current.files[0]);
+        // this.uploadTask.on('state_changed', (snapshot) => {
+        //     const percentProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        //     this.setState({
+        //         showProgressBar: true,
+        //         percentComplete: percentProgress
+        //     });
+        //     switch (snapshot.state) {
+        //         case firebase.storage.TaskState.RUNNING:
+        //             this.setState({
+        //                 uploadState: 'Upload in Progress',
+        //                 uploadStart: true
+        //             });
+        //             break;
+        //         case firebase.storage.TaskState.PAUSED:
+        //             this.setState({
+        //                 uploadState: 'Upload Pause'
+        //             });
+        //             break;
+        //         case firebase.storage.TaskState.CANCELED:
+        //             this.setState({
+        //                 uploadState: 'Upload Cancelled'
+        //             });
+        //             break;
+        //         case firebase.storage.TaskState.SUCCESS:
+        //             this.setState({
+        //                 uploadState: 'Upload Complete',
+        //                 uploadSuccess: true
+        //             });
+        //             break;
+        //     }
+        // }, (error) => {
+        //     console.log(error);
+        //     alert('an error occurred during upload, let TJ know so he can investigate');
+        // }, () => {
+        //     console.log('upload complete');
+        //     this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+        //         this.setState({
+        //             episodeDownloadURL: downloadURL
+        //         });
+        //     });
+        // });
     }
 
     handleInputChange = (e) => {
@@ -123,13 +123,6 @@ class Admin extends Component {
                     currentUser: user
                 });
                 // perform grabbing of meta data of podcasts here
-
-                this.storageRefPoint.child(`/user/${this.state.currentUser.uid}/podcasts`).getMetadata()
-                    .then(metaData => {
-                        this.setState({
-                            podcastMetaData: metaData
-                        })
-                    })
             } else {
                 this.setState({
                     authenticated: false,
@@ -190,7 +183,7 @@ class Admin extends Component {
         } else {
             return (
                 <Container>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleLogin}>
                         <Form.Field required>
                             <label>Email</label>
                             <input type="email" required placeholder="Email" name='email' value={email} onChange={this.handleInputChange} />
