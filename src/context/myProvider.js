@@ -30,6 +30,7 @@ class MyProvider extends Component {
         changeTimeoutOccur: () => this.setState({timeoutOccur: true}),
         videos: [],
         filteredVideos: [],
+        mostPopVids: [],
         modalOpen: false,
         podcastModalOpen: false,
         selectedVideo: null,
@@ -56,7 +57,7 @@ class MyProvider extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://us-central1-cloudfunctionstest-95896.cloudfunctions.net/Ollie")
+        axios.get("https://us-central1-podcast-203603.cloudfunctions.net/mostRecent")
         .then(result => {
             this.setState({
                 videos:result.data,
@@ -65,14 +66,13 @@ class MyProvider extends Component {
         })
         .catch(error => console.log(error));
         
-        // axios.get("https://us-central1-podcast-203603.cloudfunctions.net/mostRecent")
-        // .then(result => {
-        //     this.setState({
-        //         videos:result.data,
-        //         filteredVideos: result.data
-        //     });
-        // })
-        // .catch(error => console.log(error));
+        axios.get("https://us-central1-podcast-203603.cloudfunctions.net/mostPopular")
+        .then(result => {
+            this.setState({
+                mostPopVids:result.data
+            });
+        })
+        .catch(error => console.log(error));
     }
 
     render() {

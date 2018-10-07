@@ -49,7 +49,7 @@ class Home extends Component {
                                             Most Popular
                                         </Header>
                                         <ShortList
-                                            podcasts={context.state.videos}
+                                            podcasts={context.state.mostPopVids}
                                             onVideoSelect={context.state.selectVideo}
                                             />
                                     </Grid.Column>
