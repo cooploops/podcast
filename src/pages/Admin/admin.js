@@ -6,7 +6,6 @@ import firebase from 'firebase';
 class Admin extends Component {
 
     fileInput = React.createRef();
-    uploadTask;
     db = firebaseApp.firestore();
     firebaseStorage = firebaseApp.storage();
     storageRefPoint = this.firebaseStorage.ref();
@@ -53,13 +52,17 @@ class Admin extends Component {
 
     handleFileSubmit = (e) => {
         e.preventDefault();
-        this.uploadTask = this.storageRefPoint.child(`/user/${this.state.currentUser.uid}/podcasts`).put(this.fileInput.current.files[0]);
-        this.uploadTask.on('state_changed', (snapshot) => {
-            const percentProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        // console.log(this.storageRefPoint, this.state.currentUser.uid, this.fileInput.current.files[0]);
+        const uploadTask = firebaseApp.storage().ref().child(`${this.state.currentUser.uid}/podcasts/${this.state.episodeNumber}`).put(this.fileInput.current.files[0]);
+        uploadTask.on('state_changed', (snapshot) => {
+            // calc percent progress
+            const percentProgress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+            // show progress bar and store percent complete
             this.setState({
                 showProgressBar: true,
                 percentComplete: percentProgress
             });
+
             switch (snapshot.state) {
                 case firebase.storage.TaskState.RUNNING:
                     this.setState({
@@ -98,11 +101,19 @@ class Admin extends Component {
             alert('an error occurred during upload, let TJ know so he can investigate');
         }, () => {
             console.log('upload complete');
-            this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+                console.log(downloadURL)
                 this.setState({
                     episodeDownloadURL: downloadURL
                 });
+                this.db.collection("podcasts").add({
+                    title: this.state.episodeTitle,
+                    episode: this.state.episodeNumber,
+                    description: this.state.episodeDescription,
+                    downloadUrl: this.state.episodeDownloadURL
+                }).then(() => alert('Document was saved to the database'))
             });
+
         });
     }
 
@@ -151,7 +162,7 @@ class Admin extends Component {
                     <p>Will also need a button to Delete and Edit</p>
                     <p>Will include instructions on naming format for files as well here</p>
                     {this.state.uploadStart &&
-                        <Progress percent={this.state.percentComplete} indicating success={this.state.uploadSuccess} progress={this.state.percentComplete}>
+                        <Progress percent={this.state.percentComplete} indicating success={this.state.uploadSuccess} progress>
                             {this.state.uploadState}
                         </Progress>
                     }
