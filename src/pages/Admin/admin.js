@@ -6,13 +6,13 @@ import firebase from 'firebase';
 class Admin extends Component {
 
     fileInput = React.createRef();
-    db = firebaseApp.firestore();
-    firebaseStorage = firebaseApp.storage();
-    storageRefPoint = this.firebaseStorage.ref();
+    // db = firebaseApp.firestore();
+    // firebaseStorage = firebaseApp.storage();
+    // storageRefPoint = this.firebaseStorage.ref();
 
     constructor(props) {
         super(props);
-        this.db.settings({
+        firebaseApp.firestore().settings({
             timestampsInSnapshots: true
         });
     }
@@ -53,7 +53,7 @@ class Admin extends Component {
     handleFileSubmit = (e) => {
         e.preventDefault();
         // console.log(this.storageRefPoint, this.state.currentUser.uid, this.fileInput.current.files[0]);
-        const uploadTask = firebaseApp.storage().ref().child(`${this.state.currentUser.uid}/podcasts/${this.state.episodeNumber}`).put(this.fileInput.current.files[0]);
+        const uploadTask = firebaseApp.storage().ref().child(`user/${this.state.currentUser.uid}/podcasts/${this.state.episodeNumber}`).put(this.fileInput.current.files[0]);
         uploadTask.on('state_changed', (snapshot) => {
             // calc percent progress
             const percentProgress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
@@ -106,7 +106,7 @@ class Admin extends Component {
                 this.setState({
                     episodeDownloadURL: downloadURL
                 });
-                this.db.collection("podcasts").add({
+                firebaseApp.firestore().collection("users").doc(`${this.state.currentUser.uid}`).collection("podcasts").add({
                     title: this.state.episodeTitle,
                     episode: this.state.episodeNumber,
                     description: this.state.episodeDescription,
