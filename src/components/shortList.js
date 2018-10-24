@@ -23,20 +23,21 @@ const ShortList = props => {
         if(!props.podcasts){
             return <div> no videos detected </div>
         } else {
-        const miniList = props.podcasts.map((podcast) => {
+        const publicVideos = props.podcasts.filter(podcast => podcast.thumbnails);
+        const miniList = publicVideos.map((podcast) => {
 
-            const defaultImg = podcast.raw.snippet.thumbnails.default.url;
-            return (
-            <List.Item style={listItemStyle} key={podcast.raw.id} onClick={() => props.onVideoSelect(podcast)}>
-                <List.Content verticalAlign='middle' as={Container}>
-                    <Image style={imgStyle} src={defaultImg} size='tiny' verticalAlign='middle'floated='left'/>
-                    <List.Header>
-                        {podcast.raw.snippet.title}
-                    </List.Header>
-                </List.Content>
-            </List.Item>
-            );
-        });
+                const defaultImg = podcast.raw.snippet.thumbnails.default.url;
+                return (
+                <List.Item style={listItemStyle} key={podcast.raw.id} onClick={() => props.onVideoSelect(podcast)}>
+                    <List.Content verticalAlign='middle' as={Container}>
+                        <Image style={imgStyle} src={defaultImg} size='tiny' verticalAlign='middle'floated='left'/>
+                        <List.Header>
+                            {podcast.raw.snippet.title}
+                        </List.Header>
+                    </List.Content>
+                </List.Item>
+                );
+            });
 
     return (
     <div>

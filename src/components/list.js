@@ -24,47 +24,49 @@ import {List, Image, Segment, Container} from 'semantic-ui-react';
         'border':'1px solid rbga(0,0,0,0.05)',
         'borderRadius':'5px'
     }
+    if (props.podcasts) {
+        const publicVideos = props.podcasts.filter(podcast => podcast.thumbnails);
+        const podcastList = publicVideos.map((podcast) => {
 
-     const podcastList = props.podcasts.map((podcast) => {
-
-         const defaultImg = podcast.raw.snippet.thumbnails.maxres ? podcast.raw.snippet.thumbnails.maxres.url : podcast.raw.snippet.thumbnails.standard.url;
-
-         return (
-            <List.Item 
-            style={listItemStyle} 
-            key={podcast.raw.id} 
-            onClick={() => {
-                props.onPodcastSelect(podcast);
-                }} 
-            as={Segment}>
-                <List.Content 
-                as={Container}>
-                <Image 
-                verticalAlign='middle' 
-                src={defaultImg} 
-                size='small' 
-                floated='left'
-                style={imgStyle}/>
-                    <List.Header>
-                        {podcast.raw.snippet.title}
-                    </List.Header>
-                    <List.Description>
-                        {podcast.raw.snippet.description}
-                    </List.Description>
-                </List.Content>
-            </List.Item>
-         );
-     });
-
-    return (
-    <div>
-        <List 
-        style={listStyle} 
-        relaxed>
-            {podcastList}
-        </List>
-    </div>
-    )
+            const defaultImg = podcast.raw.snippet.thumbnails.maxres ? podcast.raw.snippet.thumbnails.maxres.url : podcast.raw.snippet.thumbnails.standard.url;
+   
+            return (
+               <List.Item 
+               style={listItemStyle} 
+               key={podcast.raw.id} 
+               onClick={() => {
+                   props.onPodcastSelect(podcast);
+                   }} 
+               as={Segment}>
+                   <List.Content 
+                   as={Container}>
+                   <Image 
+                   verticalAlign='middle' 
+                   src={defaultImg} 
+                   size='small' 
+                   floated='left'
+                   style={imgStyle}/>
+                       <List.Header>
+                           {podcast.raw.snippet.title}
+                       </List.Header>
+                       <List.Description>
+                           {podcast.raw.snippet.description}
+                       </List.Description>
+                   </List.Content>
+               </List.Item>
+            );
+        });
+   
+       return (
+       <div>
+           <List 
+           style={listStyle} 
+           relaxed>
+               {podcastList}
+           </List>
+       </div>
+       )
+    }
 };
 
  export default PodcastList;
