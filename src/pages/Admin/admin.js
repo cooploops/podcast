@@ -141,7 +141,7 @@ class Admin extends Component {
                     authenticated: true,
                     currentUser: user
                 });
-                // perform grabbing of meta data of podcasts here
+                // perform grabbing of data of podcasts here
                 firebaseApp.firestore().collection("users").doc(`${this.state.currentUser.uid}`).collection("podcasts").orderBy('episode')
                     .get()
                     .then(allDocs => {
