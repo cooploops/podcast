@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Container, Input, Progress } from 'semantic-ui-react';
 import firebaseApp from '../../base';
 import firebase from 'firebase';
+import Table from '../../components/table';
 
 class Admin extends Component {
 
@@ -28,7 +29,7 @@ class Admin extends Component {
         uploadSuccess: false,
         showProgressBar: false,
         percentComplete: 0,
-        podcastMetaData: null,
+        podcastData: null,
         episodeTitle: '',
         episodeNumber: '',
         episodeDescription: '',
@@ -146,10 +147,12 @@ class Admin extends Component {
                     .get()
                     .then(allDocs => {
                         console.log(allDocs);
-                        allDocs.forEach(doc => {
-                            console.log('id', doc.id);
-                            console.log('data', doc.data());
-                        })
+                        console.log(allDocs.docs);
+                        this.setState({podcastData:allDocs.docs})
+                        // allDocs.forEach(doc => {
+                        //     console.log('id', doc.id);
+                        //     console.log('data', doc.data());
+                        // })
                     })
                     .catch(error => console.log('Error getting documents: ', error));
             } else {
@@ -171,6 +174,9 @@ class Admin extends Component {
                     <p>Up here will go a view of all the files uploaded</p>
                     <p>Will also need a button to Delete and Edit</p>
                     <p>Will include instructions on naming format for files as well here</p>
+                    
+                    <Table podcastdata={this.state.podcastData}></Table>
+            
                     {this.state.uploadStart &&
                         <Progress percent={this.state.percentComplete} indicating success={this.state.uploadSuccess} progress>
                             {this.state.uploadState}
