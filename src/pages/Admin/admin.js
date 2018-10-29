@@ -42,6 +42,7 @@ class Admin extends Component {
         firebaseApp.auth().signInWithEmailAndPassword(email, password)
             .catch(error => {
                 console.log(error);
+                alert(error.message);
             });
 
         //clear form state
@@ -103,7 +104,6 @@ class Admin extends Component {
         }, () => {
             console.log('upload complete');
             uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-                console.log(downloadURL)
                 this.setState({
                     episodeDownloadURL: downloadURL
                 });
@@ -146,13 +146,7 @@ class Admin extends Component {
                 firebaseApp.firestore().collection("users").doc(`${this.state.currentUser.uid}`).collection("podcasts").orderBy('episode')
                     .get()
                     .then(allDocs => {
-                        console.log(allDocs);
-                        console.log(allDocs.docs);
                         this.setState({podcastData:allDocs.docs})
-                        // allDocs.forEach(doc => {
-                        //     console.log('id', doc.id);
-                        //     console.log('data', doc.data());
-                        // })
                     })
                     .catch(error => console.log('Error getting documents: ', error));
             } else {
