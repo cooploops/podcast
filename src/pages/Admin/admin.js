@@ -33,7 +33,10 @@ class Admin extends Component {
         episodeTitle: '',
         episodeNumber: '',
         episodeDescription: '',
-        episodeDownloadURL: ''
+        episodeDownloadURL: '',
+        tableTitleChange:'',
+        tableNumberChange:'',
+        tableDescriptionChange:''
     }
 
     handleLogin = (e) => {
@@ -169,7 +172,8 @@ class Admin extends Component {
                     <p>Will also need a button to Delete and Edit</p>
                     <p>Will include instructions on naming format for files as well here</p>
                     
-                    <Table podcastdata={this.state.podcastData}></Table>
+                    <Table podcastdata={this.state.podcastData} handleTableInputChange={this.handleInputChange}
+                    handleSaveClick={() => console.log(this.state)}></Table>
             
                     {this.state.uploadStart &&
                         <Progress percent={this.state.percentComplete} indicating success={this.state.uploadSuccess} progress>
