@@ -3,10 +3,10 @@ import { Table, Button } from 'semantic-ui-react';
 
 class table extends Component {
 
-handleEditClick = (data) => {
+handleEditClick = (data, id) => {
     this.setState({
         inEditMode: !this.state.inEditMode,
-        activeEdit: data,
+        activeEdit: id,
         tableTitleChange: data.title,
         tableNumberChange: data.episode,
         tableDescriptionChange: data.description
@@ -39,19 +39,26 @@ render(){
     } else {
         const tableRows = this.props.podcastdata.map(dataRow => {
             const data = dataRow.data();
+            const id = dataRow.id;
+            const { tableTitleChange, tableNumberChange, tableDescriptionChange} = this.state
             return (
-                <Table.Row key={data.episode}>
+                <Table.Row key={id}>
                     <Table.Cell collapsing>
-                        <Button primary onClick={() => this.handleEditClick(data)}>{this.state.inEditMode ? 'Cancel' : 'Edit'}</Button>
+                        <Button primary onClick={() => this.handleEditClick(data, id)}>{this.state.inEditMode ? 'Cancel' : 'Edit'}</Button>
                         {this.state.inEditMode &&
                         // get save function from admin.js to keep 'this' in context of admin.js since it has firebase instance open
-                        <Button primary onClick={() => console.log(this.state)}>Save</Button>}
+                        <Button primary onClick={() => {
+                            this.props.handleSaveClick(id, tableTitleChange, tableNumberChange, tableDescriptionChange)
+                                .then(() => {
+                                    this.setState({inEditMode: !this.state.inEditMode})
+                                })
+                            }}>Save</Button>}
                     </Table.Cell>
-                    {this.state.inEditMode && this.state.activeEdit.episode === data.episode &&
+                    {this.state.inEditMode && this.state.activeEdit === id &&
                     <React.Fragment>
-                        <Table.Cell><input name='tableTitleChange' type='text' value={this.state.tableTitleChange} onChange={this.handleTableInputChange}/></Table.Cell>
-                        <Table.Cell><input name='tableNumberChange' type='number' value={this.state.tableNumberChange} onChange={this.handleTableInputChange}/></Table.Cell>
-                        <Table.Cell><textarea name='tableDescriptionChange' value={this.state.tableDescriptionChange} onChange={this.handleTableInputChange}/></Table.Cell>
+                        <Table.Cell><input id={id} name='tableTitleChange' type='text' value={tableTitleChange} onChange={this.handleTableInputChange}/></Table.Cell>
+                        <Table.Cell><input id={id} name='tableNumberChange' type='number' value={tableNumberChange} onChange={this.handleTableInputChange}/></Table.Cell>
+                        <Table.Cell><textarea id={id} name='tableDescriptionChange' value={tableDescriptionChange} onChange={this.handleTableInputChange}/></Table.Cell>
                     </React.Fragment>}
                     {!this.state.inEditMode &&
                     <React.Fragment>
