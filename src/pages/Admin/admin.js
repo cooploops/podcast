@@ -16,6 +16,12 @@ class Admin extends Component {
         firebaseApp.firestore().settings({
             timestampsInSnapshots: true
         });
+        if (this.state.currentUser) {
+            firebaseApp.firestore().collection("users").doc(`${this.state.currentUser.uid}`).collection("podcasts")
+            .onSnapshot(snapShot => {
+                console.log(snapShot);
+            })
+        }
     }
 
     state = {
@@ -55,9 +61,17 @@ class Admin extends Component {
         });
     }
 
+    handleSaveEdits = (id, titleEdit, episodeEdit, descriptionEdit) => {
+        return firebaseApp.firestore().collection("users").doc(`${this.state.currentUser.uid}`).collection("podcasts").doc(id)
+            .update({
+                title: titleEdit,
+                episode: episodeEdit,
+                description: descriptionEdit
+            });
+    }
+
     handleFileSubmit = (e) => {
         e.preventDefault();
-        // console.log(this.storageRefPoint, this.state.currentUser.uid, this.fileInput.current.files[0]);
         const uploadTask = firebaseApp.storage().ref().child(`user/${this.state.currentUser.uid}/podcasts/${this.state.episodeNumber}`).put(this.fileInput.current.files[0]);
         uploadTask.on('state_changed', (snapshot) => {
             // calc percent progress
@@ -159,6 +173,21 @@ class Admin extends Component {
                 })
             }
         })
+        if (this.state.currentUser) {
+            firebaseApp.firestore().collection("users").doc(`${this.state.currentUser.uid}`).collection("podcasts")
+            .onSnapshot(snapShot => {
+                console.log(snapShot);
+            })
+        }
+    }
+
+    componentDidMount() {
+        if (this.state.currentUser) {
+            firebaseApp.firestore().collection("users").doc(`${this.state.currentUser.uid}`).collection("podcasts")
+            .onSnapshot(snapShot => {
+                console.log(snapShot);
+            })
+        }
     }
 
     render() {
@@ -173,7 +202,7 @@ class Admin extends Component {
                     <p>Will include instructions on naming format for files as well here</p>
                     
                     <Table podcastdata={this.state.podcastData} handleTableInputChange={this.handleInputChange}
-                    handleSaveClick={() => console.log(this.state)}></Table>
+                    handleSaveClick={this.handleSaveEdits}></Table>
             
                     {this.state.uploadStart &&
                         <Progress percent={this.state.percentComplete} indicating success={this.state.uploadSuccess} progress>
